@@ -31,3 +31,5 @@
 ## 關於這個儲存庫
 
 `docs/` 只包含 GitHub Pages 顯示網站所需的靜態檔案。本機測試資料、模型、配對資訊和錄音不包含在儲存庫中。校準分享服務由既有的 Cloudflare Worker 提供；本站網址會轉送 GitHub Pages 的頁面內容。
+
+要更新 GitHub Pages，修改 `docs/` 中的網站檔案並推送到 `main`；GitHub Pages 會重新部署。校準分享後端仍由 Cloudflare Worker 處理，不在 GitHub Pages 上執行。
