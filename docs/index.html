@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hant">
+<head><script>if(location.hostname==="terry-eric.github.io"&&location.pathname.startsWith("/yoasobi-lyricprompt/")){location.replace("https://demo.terry878.org/lyricprompt/"+location.search+location.hash)}</script><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/><meta content="#15151c" name="theme-color"/><meta content="手動選擇歌曲，閱讀歌詞與同步時間軸的提詞工具。" name="description"/><title>拾句 Loop · YOASOBI — 歌詞提詞助手</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Noto+Sans+TC:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/><link href="style.css?v=desktop-layout-1" rel="stylesheet"/></head>
+<body><section id="musicHome" class="music-home" aria-label="YOASOBI 唱片架"><header class="music-home-header"><div><span class="music-home-kicker">YOASOBI COLLECTION</span><h1>唱片架</h1></div><button id="homeClose" class="home-close" type="button" hidden>返回歌詞</button><label class="home-search"><span class="sr-only">搜尋歌曲或專輯</span><input id="homeSearch" type="search" placeholder="搜尋歌曲或專輯" autocomplete="off"></label><nav class="home-tabs" aria-label="唱片分類"><button type="button" data-kind="all" aria-pressed="true">全部</button><button type="button" data-kind="album" aria-pressed="false">專輯</button><button type="button" data-kind="single" aria-pressed="false">單曲</button><button type="button" id="homeMotion" class="home-motion" aria-pressed="false">暫停動畫</button><button type="button" id="homeFullscreen" class="home-fullscreen" hidden>全螢幕</button></nav><p id="homeError" class="home-error" role="alert" hidden></p></header><div id="homeScroll" class="home-scroll"><div id="homeRows" class="home-rows"></div><p id="homeEmpty" class="home-empty" hidden>找不到歌曲或專輯。</p></div></section><section id="siteIntro" class="site-intro" aria-label="YOASOBI 進場" hidden><div class="site-intro-content"><div class="site-intro-word" role="img" aria-label="YOASOBI"><span style="--shift:3">Y</span><span style="--shift:2">O</span><span style="--shift:1">A</span><span style="--shift:0">S</span><span style="--shift:-1">O</span><span style="--shift:-2">B</span><span style="--shift:-3">I</span></div></div><div class="site-intro-credit"><strong>歌詞學習（非官方）</strong><span>by Terry878</span></div></section><script src="entry.js?v=3"></script><button id="homeReturn" class="home-return" type="button" hidden>選擇歌曲</button><div class="app-shell"><header class="topbar"><a class="brand" href="#"><span class="brand-mark">♫</span><span>拾句 <small>LOOP · YOASOBI</small></span></a><div class="top-right"><span class="status-dot"></span> YOUR LYRIC COMPANION <span class="top-number">/ 01</span></div></header><main>
+<section class="intro"><div><div class="eyebrow"><span class="star">✳</span> LET THE LYRICS LEAD</div><h1>選一首歌，跟著歌詞唱。</h1><p>選擇歌曲，顯示目前和接下來的歌詞。</p></div><div aria-hidden="true" class="intro-art"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="art-disc"><span>♪</span></div><span class="art-spark one">✳</span><span class="art-spark two">✦</span><span class="art-label">FIND YOUR<br/>FAVORITE LINE ↗</span></div></section>
+<section class="player panel"><div aria-hidden="true" class="album-art-backdrop"><img alt="" class="album-art-image" crossorigin="anonymous" hidden=""/></div><div aria-hidden="true" class="mobile-disc"><img alt="" class="album-art-image album-disc-image" crossorigin="anonymous" hidden=""/><span class="mobile-disc-label">拾句<br/><small>LOOP</small></span></div><div class="player-top"><span class="section-num">03 / FOLLOW THE LYRICS</span><span class="player-tag" id="playerTag">等待選歌</span></div><div class="lyric-heading"><div><div class="track-kicker">NOW FOLLOWING</div><h2 id="trackTitle">選一首歌開始</h2><small id="trackCalibrationLabel" class="track-calibration-label" hidden></small><small id="trackAiLabel" class="track-ai-label" hidden>部分中文經 AI 修正</small><p id="trackMeta">從歌詞庫選擇歌曲，再點歌詞定位</p></div><span class="lyric-spark">✳</span></div><div class="lyrics-list" id="lyricsList"><div class="lyric-placeholder">目前歌詞與後續歌詞會在這裡顯示。</div></div><div class="follow-note">♫ <span>目前的句子會高亮，並依已選歌詞時間軸繼續顯示。</span></div><details id="ytSection" class="yt-section" hidden open><summary>影片</summary><div class="yt-panel"><p id="ytMessage" role="status"></p><button id="ytLoad" type="button">載入官方影片</button><div id="ytPlayer"></div></div></details><div class="music-shortcut"><a id="ytMusicOpen" class="yt-music-open" href="https://music.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="開啟 YouTube Music">YouTube Music ↗</a><details class="reading-note reading-attribution"><summary id="lyricSourceSummary">原詞：依歌曲來源 · 中文：機器翻譯</summary><p>目前原詞來源：<span id="lyricOriginalSource">選歌後顯示</span>。同步時間依該筆資料提供的版本。</p><p>中文由電腦本機以 <a href="https://huggingface.co/iryneko571/mt5-small-translation-ja_zh" target="_blank" rel="noopener noreferrer">iryneko571 的日中翻譯模型</a> 自動翻譯，並以 <a href="https://github.com/BYVoid/OpenCC" target="_blank" rel="noopener noreferrer">OpenCC</a> 轉為繁體；翻譯尚未經人工校對；少數句子經 AI 重新修正並標示。</p><p>假名由 <a href="https://github.com/polm/fugashi" target="_blank" rel="noopener noreferrer">fugashi／MeCab</a> 分詞產生，羅馬拼音使用 <a href="https://github.com/miurahr/pykakasi" target="_blank" rel="noopener noreferrer">pykakasi</a> 轉寫；歌詞特殊讀法及翻譯可能有誤。</p></details></div><div class="voice-follow-controls" id="mobileSettingsPanel"><section class="lyric-calibration" id="lyricCalibration" aria-label="對齊歌詞開頭" hidden><strong>對齊歌詞開頭</strong><p>播放歌曲，在聽到第一句時按下「現在是第一句」。</p><div class="lyric-calibration-buttons"><button id="lyricSyncNow" type="button" disabled>現在是第一句</button><button id="lyricCalEarlier" type="button">提早 0.5 秒</button><button id="lyricCalLater" type="button">延後 0.5 秒</button><button id="lyricCalReset" type="button">重設</button><button id="lyricCalSave" type="button">儲存</button><button id="lyricCalShare" type="button">分享已儲存的校準</button></div><output id="lyricCalOffset">原始時間</output><span id="lyricCalStatus" role="status"></span></section><span id="voiceFollowStatus" role="status">找到同步歌詞後，會參照原曲節奏繼續往下。</span><p id="ytMusicNote" class="yt-music-note" hidden>YouTube Music 另開時，歌詞不會自動同步。</p><div class="voice-follow-buttons"><button disabled id="ytSeekBack" type="button" aria-label="影片倒退 10 秒">影片 −10 秒</button><button disabled id="ytSeekForward" type="button" aria-label="影片快進 10 秒">影片 ＋10 秒</button><button id="voiceFollowStart" type="button">從歌曲開頭同步</button><button disabled="" id="voiceFollowToggle" type="button">暫停跟隨</button><button disabled="" id="voiceFollowStop" type="button">停止跟隨</button><button aria-label="歌詞延後一秒" disabled="" id="voiceFollowEarlier" hidden type="button">−1 秒</button><output id="voiceFollowOffset" hidden>0 秒</output><button aria-label="歌詞提前一秒" disabled="" id="voiceFollowLater" hidden type="button">＋1 秒</button></div></div></section><div class="dashboard"><section class="finder panel"><div class="panel-heading"><div><span class="section-num">01 / LISTEN &amp; FIND</span><h2>從一句歌詞開始 <span>✳</span></h2></div><span class="pill">LYRIC MATCH</span></div><p class="section-copy">搜尋歌詞或選擇喜歡的歌曲。</p><span class="listening-status" id="listenStatus" role="status"></span><button class="artist-button" id="yoasobi"><span>ARTIST COLLECTION</span><strong>探索 YOASOBI 歌詞</strong><b>↗</b></button><p class="artist-note">載入 YOASOBI 作品以供選歌。資料庫收錄有限。</p><div class="artist-status" id="artistStatus" role="status">準備載入 YOASOBI 歌詞…</div><div class="search-label">也可以手動輸入歌詞</div><div class="search-wrap"><span class="search-icon">⌕</span><input aria-label="輸入歌詞" autocomplete="off" id="search" placeholder="例如：風把故事帶向遠方" type="search"/><button class="search-button" id="searchBtn">尋找 <span>↗</span></button></div><div aria-live="polite" class="results" id="results"></div><p class="privacy">找不到歌詞時，可試著輸入其他片段或自行加入。<br/>線上歌詞由 <a href="https://unison.boidu.dev" rel="noopener noreferrer" target="_blank">Unison</a> 提供，收錄範圍有限。</p></section>
+<section class="library panel"><div class="panel-heading"><div><span class="section-num">02 / YOUR COLLECTION</span><h2>我的歌詞庫 <span>✳</span></h2></div><button class="add-button" id="addOpen">＋ 加入歌詞</button></div><div class="library-sub"><span>你的收藏</span><span id="songCount">0 首作品</span></div><div class="song-list" id="songList"></div><div class="library-footer"><span>✧ 歌詞保存在這個瀏覽器</span><span>YOUR COLLECTION</span></div></section>
+</div><div class="bottom-note"><span>MADE FOR THE LINES YOU REMEMBER.</span><span>KEEP THE WORDS FLOWING <b>↗</b></span></div>
+</main></div><dialog id="addDialog"><form id="addForm"><div class="modal-top"><div><span class="section-num">BUILD YOUR COLLECTION</span><h2>加入歌詞</h2></div><button aria-label="關閉" class="close-btn" id="closeDialog" type="button">×</button></div><p>貼上純文字歌詞，或匯入 LRC／文字檔；一行代表一句。請使用你有權使用的歌詞。</p><label>歌曲名稱 <span>必填</span><input id="songName" placeholder="例如：我的歌" required="" type="text"/></label><label>歌詞檔 <span>可選擇檔案或貼上歌詞</span><input accept=".lrc,.txt,text/plain" id="lrcFile" type="file"/></label><label>或貼上歌詞<textarea id="lrcText" placeholder="風把故事帶向遠方
+我們沿著光慢慢走" rows="7"></textarea></label><p class="form-hint">LRC 請為每句標記時間，例如 [00:12.30]第一句；可為同一句標記多個時間。純文字可照常貼上，但沒有時間軸。</p><div class="form-error" id="formError" role="alert"></div><button class="submit-button" type="submit">加入歌詞庫 <span>↗</span></button></form></dialog><script src="lrc-parser.js?v=1"></script><script src="ttml-parser.js?v=1"></script><script src="app.js?v=no-anime-1"></script><script src="voice-sync.js?v=calibration-1"></script><script src="yoasobi-extra.js?v=albums-no-cd-1"></script><button class="mobile-choose" id="mobileChooseSong" type="button">選擇歌曲</button><button class="mobile-settings-toggle" id="mobileSettingsToggle" type="button" aria-controls="mobileSettingsPanel" aria-expanded="false" aria-label="同步設定">設定</button><dialog aria-labelledby="mobileLibraryTitle" class="mobile-library" id="mobileLibraryDialog"><div class="mobile-library-head"><h2 id="mobileLibraryTitle">選擇歌曲</h2><button aria-label="關閉" id="mobileLibraryClose" type="button">×</button></div><label for="mobileLibrarySearch">搜尋歌名或歌手</label><input autocomplete="off" id="mobileLibrarySearch" placeholder="搜尋 YOASOBI 的歌曲" type="search"/><div id="mobileLibraryCount" role="status"></div><div id="mobileLibraryError" role="alert"></div><div class="mobile-library-songs" id="mobileLibrarySongs"></div></dialog><script>(function(){
+  'use strict';
+  const byId=id=>document.getElementById(id), dialog=byId('mobileLibraryDialog'), input=byId('mobileLibrarySearch'), list=byId('mobileLibrarySongs');
+  const norm=s=>String(s||'').normalize('NFKC').toLowerCase().replace(/[^\p{L}\p{N}]/gu,'');
+  const japanese=s=>Array.isArray(s?.lines)&&(s.lines.join('').match(/[\u3041-\u3096\u30a1-\u30fa]/g)||[]).length>=5&&!/english|英語版|英文版|e[\s-]*side/i.test(String(s.name||'')+' '+String(s.album||''))&&!/^en(?:g|glish)?$/i.test(String(s.language||''));
+  const tabs=document.createElement('nav');tabs.className='library-tabs';tabs.setAttribute('aria-label','歌曲分類');
+  for(const [id,label] of [['all','全部歌曲'],['album','專輯'],['single','單曲']]){
+    const btn=document.createElement('button');btn.type='button';btn.dataset.category=id;btn.textContent=label;btn.addEventListener('click',()=>{category=id;current=null;input.value='';update();});tabs.append(btn);
+  }
+  input.parentNode.insertBefore(tabs,input.previousElementSibling);
+  let category='album',current=null;
+  const isOriginal=t=>typeof t==='string'||(!t.versionLabel&&!t.isVariant&&t.lyricsKey!==null);
+  const titleOf=t=>typeof t==='string'?t:String(t?.title||'');
+  const baseOf=t=>typeof t==='string'?t:String(t?.baseTitle||t?.lyricsKey||t?.title||'').replace(/\s*\(Ballade\s+Ver\.\)$/i,'').replace(/\s*[-–]\s*From\s+THE\s+FIRST\s+TAKE$/i,'').trim();
+  const labelOf=t=>typeof t==='string'?'':String(t?.versionLabel||'');
+  const versions=()=>{
+    const all=[], seen=new Set(), groups=Array.isArray(window.YOASOBI_RELEASE_GROUPS)?window.YOASOBI_RELEASE_GROUPS:[];
+    for(const title of window.YoasobiCatalog?.getTitles?.()||[]){const k='original:'+norm(title);if(!seen.has(k)){seen.add(k);all.push({title,baseTitle:title,versionId:k});}}
+    for(const group of groups)for(const track of group.tracks||[]){if(!track)continue;const id=isOriginal(track)?'original:'+norm(baseOf(track)):String(track.versionId||'variant:'+norm(titleOf(track))+':'+norm(labelOf(track)));if(seen.has(id))continue;seen.add(id);all.push({...track,__release:group});}
+    return all;
+  };
+  const originalRecord=title=>{
+    const saved=songs.filter(s=>norm(String(s.name||'').split(' · ')[0])===norm(title)&&/yoasobi/i.test(String(s.artist||s.name))&&japanese(s));
+    saved.sort((a,b)=>Number(!!b.offlineSnapshot)-Number(!!a.offlineSnapshot)||Number(!!(b.timedLyrics||b.sourceTimedLyrics||b.cachedTimedLyrics))-Number(!!(a.timedLyrics||a.sourceTimedLyrics||a.cachedTimedLyrics)));
+    return saved[0]||null;
+  };
+  const referenceAllowed=t=>!isOriginal(t)&&['現場版','抒情版'].includes(labelOf(t))&&(window.YoasobiCatalog?.getTitles?.()||[]).some(x=>norm(x)===norm(baseOf(t)));
+  function forRelease(song,release,track){
+    const selected={...song};
+    if(release){selected.id=String(song.id)+'::release:'+String(release.id);selected.artworkUrl=String(release.artworkUrl||'');delete selected.artwork;selected.albumArtworkChosen=true;}
+    if(referenceAllowed(track) && !exactVariants[track?.versionId]){
+      selected.id=String(selected.id)+'::reference:'+String(track.versionId||labelOf(track));selected.name=baseOf(track)+'（'+labelOf(track)+'・原曲歌詞參考） · YOASOBI';selected.referenceOnly=true;
+      delete selected.timedLyrics;delete selected.sourceTimedLyrics;delete selected.cachedTimedLyrics;
+    }
+    return selected;
+  }
+  const exactVariants=Object.freeze({
+    '1614012342-あの夢をなぞって (Ballade Ver.)':{id:36475577,title:'あの夢をなぞって (Ballade Ver.)',count:38,first:8.89,last:217.52},
+    '1852183577-会心の一撃':{id:25101432,title:'会心の一撃',count:30,first:.56,last:220.72},
+    '6809445134-オリオン (PSYQUI Remix)':{id:39083525,title:'オリオン (PSYQUI Remix)',count:68,first:1.27,last:192.18}
+  });
+  function addTrack(track,container=list,releaseOverride=null){
+    const title=titleOf(track),base=baseOf(track), label=labelOf(track), original=isOriginal(track);
+    const variant=exactVariants[track?.versionId],collaboration=track?.versionId==='1721164433',reference=referenceAllowed(track),song=variant?songs.find(s=>s.id==='lrclib-'+variant.id)||null:collaboration?songs.find(s=>s.id==='lrclib-7819681')||null:(original||reference)?originalRecord(base):null,release=releaseOverride||current||track?.__release||null;
+    const button=document.createElement('button');button.type='button';button.className='mobile-library-song';
+    const name=document.createElement('span');name.textContent=title+(label&&!norm(title).includes(norm(label))?' · '+label:'');
+    const detail=document.createElement('small');detail.textContent=variant?'版本歌詞・有時間軸':collaboration?'合作版・有同步歌詞':reference?'原曲歌詞參考・無版本同步':!original?(label==='無歌詞'?'無歌詞':'此版本歌詞尚未取得'):!song?'取得歌詞':(song.timedLyrics||song.sourceTimedLyrics||song.cachedTimedLyrics)?'有同步歌詞':'可手動看歌詞';
+    button.append(name,detail);
+    if(!original&&!reference&&!collaboration&&!variant){button.disabled=true;button.setAttribute('aria-label',name.textContent+'，'+detail.textContent);container.append(button);return button;}
+    button.addEventListener('click',async()=>{
+      byId('mobileLibraryError').textContent='';byId('homeError').hidden=true;if(song){selectSongPosition(forRelease(song,release,track),0);if(dialog.open)dialog.close();closeHome();return;}
+      button.disabled=true;detail.textContent='正在取得…';
+      try{
+        let fetched;
+        if(variant){
+          const response=await fetch('https://lrclib.net/api/get/'+variant.id,{signal:AbortSignal.timeout(15000)});
+          if(!response.ok)throw Error('歌詞來源暫時無法使用，請稍後重試。');
+          const data=await response.json(),parsed=window.LrcParser?.parse(data.syncedLyrics||'');
+          if(Number(data.id)!==variant.id||norm(data.trackName)!==norm(variant.title)||!/^YOASOBI$/i.test(data.artistName)||parsed?.error||parsed?.lines?.length!==variant.count||parsed?.timedLyrics?.[0]?.time!==variant.first||parsed?.timedLyrics?.at(-1)?.time!==variant.last)throw Error('版本歌詞資料有誤，請稍後重試。');
+          fetched={id:'lrclib-'+variant.id,sourceId:variant.id,name:variant.title+' · YOASOBI',artist:'YOASOBI',lines:parsed.lines,timedLyrics:parsed.timedLyrics,source:'LRCLIB'};
+        }else if(collaboration){
+          const response=await fetch('https://lrclib.net/api/get/7819681',{signal:AbortSignal.timeout(15000)});
+          if(!response.ok)throw Error('歌詞來源暫時無法使用，請稍後重試。');
+          const data=await response.json();
+          if(Number(data.id)!==7819681||norm(data.trackName)!==norm('Chuuou Freeway')||!data.syncedLyrics)throw Error('歌詞資料有誤，請稍後重試。');
+          const parsed=window.LrcParser?.parse(data.syncedLyrics);
+          if(parsed?.error||parsed?.lines?.length!==41||parsed?.timedLyrics?.[0]?.time!==0.38||parsed?.timedLyrics?.at(-1)?.time!==194.84)throw Error('同步歌詞資料有誤，請稍後重試。');
+          fetched={id:'lrclib-7819681',sourceId:7819681,name:base+' · YOASOBI cheers 松任谷由実',artist:'YOASOBI cheers 松任谷由実',lines:parsed.lines,timedLyrics:parsed.timedLyrics,source:'LRCLIB'};
+        }else fetched=await window.YoasobiCatalog.ensure(base);
+        if(!fetched||!japanese(fetched))throw Error('暫時找不到這首歌的日文歌詞。');
+        const existing=variant?songs.find(s=>s.id==='lrclib-'+variant.id)||null:collaboration?songs.find(s=>s.id==='lrclib-7819681')||null:originalRecord(base);if(!existing&&songs.some(s=>s.id===fetched.id)){const stem=String(fetched.id)+'-ja';let id=stem,n=1;while(songs.some(s=>s.id===id))id=stem+'-'+n++;fetched.id=id;}
+        const selected=existing||fetched;if(!existing){songs.push(fetched);saveSongs();renderSongs();}selectSongPosition(forRelease(selected,release,track),0);if(dialog.open)dialog.close();closeHome();
+      }catch(e){const message=String(e?.message||'暫時無法取得歌詞，請再試一次。').slice(0,120);byId('mobileLibraryError').textContent=message;if(!byId('musicHome').hidden){byId('homeError').textContent=message;byId('homeError').hidden=false;}button.disabled=false;detail.textContent='重試';}
+    });container.append(button);return button;
+  }
+  function albumArt(group,container){
+    const url=String(group.artworkUrl||'');let valid=false;try{const u=new URL(url);valid=u.protocol==='https:'&&!u.username&&!u.password&&!u.port&&(/^is\d+-ssl\.mzstatic\.com$/.test(u.hostname)||u.hostname==='coverartarchive.org'||u.hostname==='archive.org'||u.hostname.endsWith('.archive.org'));}catch{}
+    if(!valid)return;const img=document.createElement('img');img.className='library-cover';img.alt=group.title+'封面';img.loading='lazy';img.onerror=()=>img.remove();img.src=url;container.prepend(img);
+  }
+  function addRelease(group){
+    const button=document.createElement('button');button.type='button';button.className='mobile-library-release';
+    const info=document.createElement('span'),name=document.createElement('strong'),count=document.createElement('small');name.textContent=String(group.title||'');count.textContent=group.partial?`顯示 ${(group.tracks||[]).length} 首 YOASOBI 相關作品`:`${(group.tracks||[]).length} 首歌曲`;info.append(name,count);button.append(info);
+    const disc=document.createElement('span');disc.className='library-cover-fallback';disc.setAttribute('aria-hidden','true');button.prepend(disc);albumArt(group,button);
+    button.addEventListener('click',()=>{current=group;input.value='';update();list.scrollTop=0;});list.append(button);
+  }
+  function update(){
+    const q=norm(input.value);list.replaceChildren();byId('mobileLibraryError').textContent='';
+    for(const b of tabs.children){const active=b.dataset.category===category;b.setAttribute('aria-pressed',String(active));}
+    const groups=(Array.isArray(window.YOASOBI_RELEASE_GROUPS)?window.YOASOBI_RELEASE_GROUPS:[]).filter(g=>g&&typeof g.title==='string'&&Array.isArray(g.tracks));
+    if(category==='all'){
+      current=null;const matched=versions().filter(t=>!q||norm(titleOf(t)+' '+labelOf(t)+' YOASOBI').includes(q));
+      byId('mobileLibraryCount').textContent=`${matched.length} 首歌曲${window.YoasobiSnapshotStatus?.persisted===false?'；儲存空間不足，本次可用':''}`;
+      for(const t of matched)addTrack(t);
+    } else if(current){
+      const back=document.createElement('button');back.type='button';back.className='library-back';back.textContent='← 返回'+(category==='album'?'專輯':'單曲');back.addEventListener('click',()=>{current=null;input.value='';update()});list.append(back);
+      const head=document.createElement('div');head.className='library-release-head';const label=document.createElement('strong');label.textContent=current.title;head.append(label);albumArt(current,head);list.append(head);
+      const matching=current.tracks.filter(t=>!q||norm(titleOf(t)+' '+labelOf(t)).includes(q));byId('mobileLibraryCount').textContent=current.partial?`顯示 ${matching.length} 首 YOASOBI 相關作品`:`${matching.length} 首歌曲`;for(const t of matching)addTrack(t);
+    }else{
+      const matching=groups.filter(g=>g.kind===category&&(!q||norm(g.title).includes(q)||g.tracks.some(t=>norm(titleOf(t)).includes(q))));byId('mobileLibraryCount').textContent=`${matching.length} 張${category==='album'?'專輯':'單曲'}`;for(const g of matching)addRelease(g);
+    }
+    if(!list.querySelector('.mobile-library-song,.mobile-library-release')){const p=document.createElement('p');p.textContent=groups.length||category==='all'?'找不到歌曲，請試試其他名稱。':'分類資料尚未準備好。';list.append(p);}
+  }
+  const home=byId('musicHome'),homeRows=byId('homeRows'),homeSearch=byId('homeSearch'),homeTabs=home.querySelector('.home-tabs');
+  let homeKind='album';
+  const homeStateKey='lyricPromptView';
+  function setHomeView(visible){
+    home.hidden=!visible;byId('homeReturn').hidden=visible;if(!visible)byId('homeClose').hidden=false;
+    document.body.classList.toggle('music-home-open',visible);if(visible){const section=byId('ytSection');if(section&&!section.hidden&&section.querySelector('iframe'))section.open=true;renderHome();}
+  }
+  history.replaceState({...history.state,[homeStateKey]:'home'},'');
+  function closeHome(){if(history.state?.[homeStateKey]!=='song')history.pushState({...history.state,[homeStateKey]:'song'},'');setHomeView(false);}
+  function showHome(){if(history.state?.[homeStateKey]==='song'){setHomeView(true);history.back();}else setHomeView(true);}
+  window.addEventListener('popstate',event=>setHomeView(event.state?.[homeStateKey]!=='song'));
+  function trackArt(track,group,groups){
+    return groups.find(g=>g.kind==='single'&&Array.isArray(g.tracks)&&g.tracks.some(t=>isOriginal(t)&&norm(baseOf(t))===norm(baseOf(track)))&&g.artworkUrl)||group;
+  }
+  function renderHome(){
+    const q=norm(homeSearch.value),groups=(Array.isArray(window.YOASOBI_RELEASE_GROUPS)?window.YOASOBI_RELEASE_GROUPS:[]).filter(g=>g&&g.title&&Array.isArray(g.tracks));
+    const matching=groups.filter(g=>(homeKind==='all'||g.kind===homeKind)&&(!q||norm(g.title).includes(q)||g.tracks.some(t=>norm(titleOf(t)+' '+labelOf(t)).includes(q))));
+    homeRows.replaceChildren();
+    for(const group of matching){
+      const row=document.createElement('article');row.className='cassette-row';
+      const cover=document.createElement(group.tracks.length===1?'button':'div');cover.className='cassette-release';if(cover.tagName==='BUTTON')cover.type='button';
+      const fallback=document.createElement('span');fallback.className='library-cover-fallback';fallback.setAttribute('aria-hidden','true');cover.append(fallback);albumArt(group,cover);if(group.tracks.length===1){const image=cover.querySelector('img');if(image)row.style.setProperty('--single-cover','url('+JSON.stringify(image.src)+')');}
+      const name=document.createElement('strong');name.textContent=group.title;const type=document.createElement('small');type.textContent=group.kind==='album'?'專輯':'單曲';cover.append(name,type);row.append(cover);
+      const rail=document.createElement('div');rail.className='cassette-rail';rail.setAttribute('aria-label',group.title+'的歌曲');
+      const tracks=q&&!norm(group.title).includes(q)?group.tracks.filter(t=>norm(titleOf(t)+' '+labelOf(t)).includes(q)):group.tracks;
+      for(const track of tracks){const card=addTrack(track,rail,group),art=trackArt(track,group,groups);card.classList.add('cassette-track');const disc=document.createElement('span');disc.className='library-cover-fallback';disc.setAttribute('aria-hidden','true');card.prepend(disc);albumArt(art,card);if(!isOriginal(track)&&art!==group){const detail=card.querySelector('small');if(detail)detail.textContent='原曲封面 · '+detail.textContent;card.setAttribute('aria-label',card.textContent.trim());}}
+      if(cover.tagName==='BUTTON'){const only=rail.querySelector('.cassette-track');cover.disabled=!only||only.disabled;cover.setAttribute('aria-label','開啟 '+group.title);cover.addEventListener('click',()=>only?.click());}
+      row.append(rail);homeRows.append(row);
+    }
+    byId('homeEmpty').hidden=matching.length>0;
+    for(const btn of homeTabs.querySelectorAll('button[data-kind]'))btn.setAttribute('aria-pressed',String(btn.dataset.kind===homeKind));
+  }
+  for(const btn of homeTabs.querySelectorAll('button[data-kind]'))btn.addEventListener('click',()=>{homeKind=btn.dataset.kind;renderHome();byId('homeScroll').scrollTop=0});
+  homeSearch.addEventListener('input',renderHome);byId('homeClose').addEventListener('click',closeHome);byId('homeReturn').addEventListener('click',showHome);
+  byId('mobileChooseSong').addEventListener('click',showHome);
+  const fullButton=byId('homeFullscreen');
+  function updateFullscreen(){fullButton.textContent=document.fullscreenElement?'退出全螢幕':'全螢幕';}
+  if(document.fullscreenEnabled&&document.documentElement.requestFullscreen){
+    fullButton.hidden=false;fullButton.addEventListener('click',async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen();}catch{fullButton.textContent='無法全螢幕';setTimeout(updateFullscreen,1800);}});
+    document.addEventListener('fullscreenchange',updateFullscreen);
+  }
+  // Move existing, interactive cards instead of cloning them; the first/last
+  // card wraps without losing listeners or creating duplicate focus targets.
+  const homeScroll=byId('homeScroll'),motionButton=byId('homeMotion'),reduced=matchMedia('(prefers-reduced-motion: reduce)');
+  let paused=reduced.matches,pauseUntil=0,lastFrame=0,verticalRemainder=0;const railRemainder=new WeakMap();
+  function syncMotion(){motionButton.textContent=paused?'播放動畫':'暫停動畫';motionButton.setAttribute('aria-pressed',String(paused));}
+  motionButton.addEventListener('click',()=>{paused=!paused;syncMotion();pauseUntil=performance.now()+1000});syncMotion();
+  for(const name of ['pointerdown','wheel','touchstart'])homeScroll.addEventListener(name,()=>{pauseUntil=performance.now()+6000},{passive:true});
+  homeSearch.addEventListener('input',()=>{pauseUntil=performance.now()+6000});
+  function animate(now){
+    requestAnimationFrame(animate);
+    if(!lastFrame){lastFrame=now;return;}if(now-lastFrame<30)return;const dt=Math.min(now-lastFrame,60);lastFrame=now;
+    const active=document.activeElement,focusBlocks=active===homeSearch||!!active?.matches?.('.cassette-track');
+    if(home.hidden||document.hidden||paused||now<pauseUntil||focusBlocks)return;
+    const rows=homeRows.children;
+    if(rows.length>1&&homeRows.scrollHeight>homeScroll.clientHeight+1){
+      if(homeScroll.scrollTop<=1){const last=homeRows.lastElementChild,height=last.getBoundingClientRect().height+(parseFloat(getComputedStyle(homeRows).rowGap)||0);homeRows.prepend(last);homeScroll.scrollTop+=height;}
+      verticalRemainder+=dt*(.024+.002*Math.sin(now/1800));const step=Math.floor(verticalRemainder);verticalRemainder-=step;
+      if(step)homeScroll.scrollTop=Math.max(0,homeScroll.scrollTop-step);
+    }
+    const viewport=homeScroll.getBoundingClientRect();
+    for(const rail of homeRows.querySelectorAll('.cassette-rail')){
+      const bounds=rail.getBoundingClientRect();if(bounds.bottom<viewport.top||bounds.top>viewport.bottom||rail.children.length<2||rail.scrollWidth<=rail.clientWidth+1)continue;
+      let distance=(railRemainder.get(rail)||0)+dt*(.034+.002*Math.sin(now/1600));const pixels=Math.floor(distance);distance-=pixels;railRemainder.set(rail,distance);if(pixels)rail.scrollLeft+=pixels;
+      const first=rail.firstElementChild,next=first?.nextElementSibling;if(!first||!next)continue;
+      const step=next.offsetLeft-first.offsetLeft;
+      if(step>0&&rail.scrollLeft>=step){rail.append(first);rail.scrollLeft-=step;}
+    }
+  }
+  requestAnimationFrame(animate);
+  document.body.classList.add('music-home-open');renderHome();
+  byId('mobileLibraryClose').addEventListener('click',()=>dialog.close());input.addEventListener('input',update);
+  new MutationObserver(()=>{if(dialog.open)update()}).observe(byId('songList'),{childList:true});
+  window.addEventListener('yoasobi-catalog-ready',()=>{if(dialog.open)update();if(!home.hidden)renderHome()});
+})();
+</script><script data-album-theme="1">/* Theme from a real, allow-listed album image. Missing/unreadable art stays neutral. */
+(function(root){
+  'use strict';
+  let revision=0,current='',retryAt=0;
+  const safeUrl=value=>{
+    try{
+      const u=new URL(String(value||''));
+      if(u.protocol!=='https:'||u.username||u.password||u.port)return '';
+      if(!(/^is[0-9]+-ssl\.mzstatic\.com$/.test(u.hostname)||u.hostname==='coverartarchive.org'||u.hostname==='archive.org'||u.hostname.endsWith('.archive.org')))return '';
+      return u.href;
+    }catch{return ''}
+  };
+  function colorFromPixels(data){
+    const bins=new Map();
+    for(let i=0;i<data.length;i+=4){
+      const r=data[i],g=data[i+1],b=data[i+2],a=data[i+3];if(a<128)continue;
+      const hi=Math.max(r,g,b),lo=Math.min(r,g,b);if(hi<38||lo>230)continue;
+      const key=[r>>5,g>>5,b>>5].join(',');const entry=bins.get(key)||{r:0,g:0,b:0,n:0};entry.r+=r;entry.g+=g;entry.b+=b;entry.n++;bins.set(key,entry);
+    }
+    let best=null,score=0;for(const item of bins.values()){
+      const r=item.r/item.n,g=item.g/item.n,b=item.b/item.n,v=Math.max(r,g,b)-Math.min(r,g,b);
+      const x=item.n*(.35+Math.min(1,v/80));if(x>score){score=x;best={r:Math.round(r),g:Math.round(g),b:Math.round(b)}}
+    }
+    return best;
+  }
+  function reset(){
+    document.documentElement.style.removeProperty('--album-glow');
+    document.querySelector('.mobile-disc')?.classList.remove('has-art');
+    for(const image of document.querySelectorAll('.album-art-image')){image.hidden=true;image.removeAttribute('src')}
+  }
+  async function setSong(song){
+    const marker=String(song?.id||song?.name||'');if(!marker||(marker===current&&Date.now()<retryAt))return;
+    current=marker;retryAt=Date.now()+120000;const mine=++revision;reset();
+    let raw=song.artworkUrl||song.artwork||'';
+    if(!raw&&!song.albumArtworkChosen&&typeof root.YoasobiCatalog?.getArtwork==='function'){
+      try{const result=await root.YoasobiCatalog.getArtwork(String(song.name||'').split(' · ')[0]);raw=typeof result==='string'?result:result?.url||''}catch{}
+    }
+    if(mine!==revision)return;const url=safeUrl(raw);if(!url)return;
+    const probe=new Image();probe.crossOrigin='anonymous';
+    probe.onload=()=>{
+      if(mine!==revision)return;retryAt=Infinity;
+      for(const image of document.querySelectorAll('.album-art-image')){image.crossOrigin='anonymous';image.src=url;image.hidden=false}
+      document.querySelector('.mobile-disc')?.classList.add('has-art');
+      try{
+        const canvas=document.createElement('canvas');canvas.width=40;canvas.height=40;
+        const ctx=canvas.getContext('2d',{willReadFrequently:true});ctx.drawImage(probe,0,0,40,40);
+        const color=colorFromPixels(ctx.getImageData(0,0,40,40).data);
+        if(color)document.documentElement.style.setProperty('--album-glow',`${color.r} ${color.g} ${color.b}`);
+      }catch{/* A missing CORS header or unreadable image leaves a neutral background. */}
+    };
+    probe.onerror=()=>{if(mine===revision)reset()};probe.src=url;
+  }
+  root.AlbumTheme={setSong,safeUrl,colorFromPixels};
+})(window);
+</script><script data-yt-music-link="1">(function(root){'use strict';
+const ids=Object.freeze({"アンコール":"vcGbefQBvJ4","ハルジオン":"kzdJkT4kp-A","あの夢をなぞって":"sAuEeM_6zpk","たぶん":"tYP-i_tShDY","群青":"Y4nEEZwckuU","ハルカ":"vd3IlOjSUGQ","夜に駆ける":"by4SYYWlhEs","ツバメ":"qDL3zhB8-MM","三原色":"nhOhFOoURnE","大正浪漫":"wJQ9ig_d8yY","もう少しだけ":"VfATdDI3604","優しい彗星":"iykAM_McguQ","怪物":"dy90tA3TT1c","もしも命が描けたら":"I0kytvnHG-Q","ラブレター":"mnta9Pp2LqA","勇者":"mctEybOqY6s","祝福":"3eytpBOkOFA","海のまにまに":"7G0ovtPqHnI","ミスター":"2-c0DFt6vK4","アイドル":"ZRtdQ81jPUQ","セブンティーン":"0yoM7ETNPIY","アドベンチャー":"VmUZooM4ZtE","好きだ":"WQ6ePunO8uY","オリオン":"EjaQdBcF6K4","アドレナ":"ARqP5ohiubY","UNDEAD":"Jj1_mfUzjOs","PLAYERS":"ZfR_FP_7w00","モノトーン":"sJ-2X3rHtXw","BABY":"tWqZxTAy7rU","Watch me!":"evtoG-4dLM4","Biri-Biri":"shZyg5VFI1Y","New me":"HRlW6yZo6Kc","HEART BEAT":"ZSr3P-Rn6x0","舞台に立って":"GWDzKel_vuQ","劇上":"GuIkxXiVHps","咲き誇れ":"qwYhKlY4Tx0","the NOISE":"PNQ-k7qj9r4","中央フリーウェイ":"BNiPHiEjkkA","会心の一撃":"8nha9wNQvK0","オリオン (PSYQUI Remix)":"1lOYyzBq4IM","あの夢をなぞって (Ballade Ver.)":"J9SAZlsM-ZM"}),anchor=document.getElementById('ytMusicOpen');
+function details(song){const parts=String(song?.name||'').split(' · '),title=parts.shift().trim(),artist=String(song?.artist||parts.join(' · ')||'YOASOBI').trim();return {title,artist};}
+function linkFor(song){const {title,artist}=details(song);const video=!song?.referenceOnly&&(/^YOASOBI$/i.test(artist)||(title==='the NOISE'&&artist==='LE SSERAFIM & YOASOBI')||(title==='中央フリーウェイ'&&artist==='YOASOBI cheers 松任谷由実'))&&Object.hasOwn(ids,title)?ids[title]:null;const u=new URL(video?'https://music.youtube.com/watch':'https://music.youtube.com/search');if(video)u.searchParams.set('v',video);else u.searchParams.set('q',`${artist} ${title.replace(/原曲歌詞參考/g,'')}`.trim());return {url:u.href,verified:!!video,title};}
+function setSong(song){if(!song||!anchor)return;const item=linkFor(song);anchor.href=item.url;anchor.hidden=false;document.getElementById('ytMusicNote').hidden=false;anchor.textContent='YouTube Music ↗';anchor.setAttribute('aria-label',item.verified?'在 YouTube Music 開啟這首歌（歌詞不會自動同步）':'在 YouTube Music 搜尋這首歌（請確認版本）');anchor.title=item.verified?'在 YouTube Music App 或網站開啟；歌詞不會自動同步':'在 YouTube Music App 或網站搜尋；請確認版本';}
+root.YTMusicLink={linkFor,setSong};
+})(window);</script><script>/* Official YouTube player in our HTTPS static wrapper. No lyrics or session
+ * data are sent to the wrapper; only approved videos and player commands. */
+(function(root){
+  'use strict';
+  let remoteOrigin='';
+  const byId=id=>document.getElementById(id);
+  const tracks=Object.freeze({"アンコール":{"video":"vcGbefQBvJ4","sourceId":5557277,"length":60,"first":0.9,"last":269.48,"largeMismatch":true,"videoOffset":0,"userCalibrated":true},"ハルジオン":{"video":"kzdJkT4kp-A","sourceId":7473111,"length":49,"first":14.45,"last":184.26,"videoOffset":0,"userCalibrated":true},"あの夢をなぞって":{"video":"sAuEeM_6zpk","sourceId":7528549,"length":46,"first":1.3900000000000001,"last":227.69,"videoOffset":0,"userCalibrated":true},"たぶん":{"video":"tYP-i_tShDY","sourceId":7112662,"length":61,"first":6.28,"last":227.52,"videoOffset":-4.33,"sampled":true,"userCalibrated":true},"群青":{"video":"Y4nEEZwckuU","sourceId":5557410,"length":69,"first":1.18,"last":240.16,"videoOffset":1.7,"sampled":true,"userCalibrated":true},"ハルカ":{"video":"vd3IlOjSUGQ","sourceId":4970176,"length":36,"first":14.23,"last":216.86,"videoOffset":0,"userCalibrated":true},"夜に駆ける":{"video":"by4SYYWlhEs","sourceId":7058562,"length":56,"first":1.52,"last":240.84,"verified":true},"ツバメ":{"video":"qDL3zhB8-MM","sourceId":3129883,"length":41,"first":3.91,"last":197.57,"videoOffset":0,"userCalibrated":true},"三原色":{"video":"nhOhFOoURnE","sourceId":5557366,"length":69,"first":7.31,"last":213.45,"videoOffset":1,"userCalibrated":true},"大正浪漫":{"video":"wJQ9ig_d8yY","sourceId":21057667,"length":47,"first":2.55,"last":156.83,"videoOffset":0.5,"userCalibrated":true},"もう少しだけ":{"video":"VfATdDI3604","sourceId":4970169,"length":65,"first":0.86,"last":216,"videoOffset":0,"userCalibrated":true},"優しい彗星":{"video":"iykAM_McguQ","sourceId":4970188,"length":40,"first":1.33,"last":208.32,"videoOffset":0,"userCalibrated":true},"怪物":{"video":"dy90tA3TT1c","sourceId":7907369,"length":56,"first":2.44,"last":188.72,"videoOffset":0,"userCalibrated":true},"もしも命が描けたら":{"video":"I0kytvnHG-Q","sourceId":5557269,"length":69,"first":4.59,"last":190.27,"videoOffset":0,"userCalibrated":true},"ラブレター":{"video":"mnta9Pp2LqA","sourceId":4970178,"length":58,"first":0.72,"last":203.07,"videoOffset":0,"userCalibrated":true},"勇者":{"video":"mctEybOqY6s","sourceId":4017357,"length":68,"first":0,"last":187.96,"videoOffset":-0.5,"userCalibrated":true},"祝福":{"video":"3eytpBOkOFA","sourceId":7365171,"length":51,"first":0.89,"last":177.05,"videoOffset":0,"userCalibrated":true},"海のまにまに":{"video":"7G0ovtPqHnI","sourceId":2465002,"length":62,"first":0.47,"last":251.79,"videoOffset":11,"userCalibrated":true},"ミスター":{"video":"2-c0DFt6vK4","sourceId":30153988,"length":48,"first":2.51,"last":174.51,"videoOffset":3,"userCalibrated":true},"アイドル":{"video":"ZRtdQ81jPUQ","sourceId":7159727,"length":76,"first":0.89,"last":206.02,"videoOffset":-0.5,"userCalibrated":true},"セブンティーン":{"video":"0yoM7ETNPIY","sourceId":2733823,"length":48,"first":27.54,"last":181.37,"videoOffset":15.5,"userCalibrated":true},"アドベンチャー":{"video":"VmUZooM4ZtE","sourceId":32226770,"length":55,"first":0.07,"last":187.71,"videoOffset":0,"userCalibrated":true},"好きだ":{"video":"WQ6ePunO8uY","sourceId":3822002,"length":43,"first":15.58,"last":194.82,"videoOffset":0,"userCalibrated":true},"オリオン":{"video":"fCh0qfxElm8","sourceId":36645159,"length":92,"first":10.71,"last":194.662},"アドレナ":{"video":"ARqP5ohiubY","sourceId":31892587,"length":82,"first":16.45,"last":156.39},"UNDEAD":{"video":"Jj1_mfUzjOs","sourceId":30617101,"length":83,"first":0.32,"last":178.43,"videoOffset":0,"userCalibrated":true},"PLAYERS":{"video":"ZfR_FP_7w00","sourceId":22551806,"length":57,"first":0.19,"last":193.16,"videoOffset":0,"userCalibrated":true},"モノトーン":{"video":"sJ-2X3rHtXw","sourceId":33054731,"length":69,"first":0.56,"last":203.34,"videoOffset":-1.0,"userCalibrated":true},"BABY":{"video":"tWqZxTAy7rU","sourceId":33224344,"length":77,"first":0.79,"last":227.15,"videoOffset":-0.5,"userCalibrated":true},"Watch me!":{"video":"evtoG-4dLM4","sourceId":33187662,"length":67,"first":1.05,"last":168.59,"videoOffset":0,"userCalibrated":true},"Biri-Biri":{"video":"shZyg5VFI1Y","sourceId":4453862,"length":86,"first":12.39,"last":178.96,"videoOffset":0,"userCalibrated":true},"New me":{"video":"HRlW6yZo6Kc","sourceId":33221252,"length":57,"first":0.22,"last":191.78,"videoOffset":1,"userCalibrated":true},"HEART BEAT":{"video":"ZSr3P-Rn6x0","sourceId":5313688,"length":89,"first":6.72,"last":328.23,"videoOffset":1,"userCalibrated":true},"舞台に立って":{"video":"GWDzKel_vuQ","sourceId":30138764,"length":69,"first":0.6,"last":205.42,"videoOffset":1.0,"userCalibrated":true},"劇上":{"video":"GuIkxXiVHps","sourceId":30152266,"length":46,"first":0.54,"last":180.9,"videoOffset":0,"userCalibrated":true},"咲き誇れ":{"video":"qwYhKlY4Tx0","sourceId":39332565,"length":50,"first":5.42,"last":239.6,"videoOffset":0.5,"userCalibrated":true},"the NOISE":{"video":"PNQ-k7qj9r4","sourceId":25707454,"length":34,"first":17.83,"last":215.53,"videoOffset":0,"userCalibrated":true},"中央フリーウェイ":{"video":"BNiPHiEjkkA","sourceId":7819681,"length":41,"first":0.38,"last":194.84},"会心の一撃":{"video":"8nha9wNQvK0","sourceId":25101432,"length":30,"first":0.56,"last":220.72,"videoOffset":0,"userCalibrated":true},"オリオン (PSYQUI Remix)":{"video":"1lOYyzBq4IM","sourceId":39083525,"length":68,"first":1.27,"last":192.18,"videoOffset":-0.5,"userCalibrated":true},"あの夢をなぞって (Ballade Ver.)":{"video":"J9SAZlsM-ZM","sourceId":36475577,"length":38,"first":8.89,"last":217.52,"videoOffset":0,"userCalibrated":true}});
+  let selected=null,identity='',frame=null,nonce='',ready=false,playing=false,watchdog=null,lastSeconds=0,manualOffset=0;
+  const offsetPrefix='lyric-calibration-v1:', absolutePrefix='lyric-calibration-v2:';
+  // v1 values were relative to these original defaults; keep the snapshot fixed.
+  const legacyBaselines=Object.freeze({'tYP-i_tShDY':-4.33,'Y4nEEZwckuU':1.7});
+  function readOffset(track){
+    try{
+      const base=Number(track.videoOffset)||0, absolute=localStorage.getItem(absolutePrefix+track.video);
+      if(absolute!==null){const n=Number(absolute);return Number.isFinite(n)&&Math.abs(n)<=90?Number((n-base).toFixed(4)):null;}
+      const old=localStorage.getItem(offsetPrefix+track.video);if(old===null)return null;
+      const n=Number(old);return Number.isFinite(n)&&Math.abs(n)<=30?Number((n+(legacyBaselines[track.video]||0)-base).toFixed(4)):null;
+    }catch{return null;}
+  }
+  function updateCalibrationLabel(track){
+    const label=byId('trackCalibrationLabel');
+    const text=track?.userCalibrated?'開頭已校準':(track&&!track.noTiming&&readOffset(track)!==null?'個人開頭已校準':'');
+    label.textContent=text;label.hidden=!text;
+  }
+  function calibrationDisplay(message=''){
+    const n=Math.round(manualOffset*10)/10;
+    byId('lyricCalOffset').textContent=n===0?'原始時間':(n<0?'提早 ':'延後 ')+Math.abs(n).toFixed(1)+' 秒';
+    byId('lyricCalStatus').textContent=message;
+  }
+  function previewCalibration(){const track=trackFor(selected);if(ready&&track&&!track.noTiming)root.VoiceSync?.followPlayer?.(selected,lastSeconds-(track.videoOffset||0)-manualOffset,playing);}
+  function changeCalibration(next){manualOffset=Math.max(-30,Math.min(30,Math.round(next*10)/10));calibrationDisplay('尚未儲存');previewCalibration();}
+
+  function trackFor(song){
+    const parts=String(song?.name||'').split(' · '),title=parts.shift().trim(),artist=String(song?.artist||parts.join(' · ')||'').trim();
+    const t=song?.timedLyrics, track=tracks[title];
+    if(song?.referenceOnly||!track||!(/^YOASOBI$/i.test(artist)||(title==='the NOISE'&&artist==='LE SSERAFIM & YOASOBI')||(title==='中央フリーウェイ'&&artist==='YOASOBI cheers 松任谷由実'))||Number(song?.sourceId)!==track.sourceId)return null;
+    if(!track.noTiming&&(!Array.isArray(t)||t.length!==track.length||t[0]?.time!==track.first||t[t.length-1]?.time!==track.last))return null;
+    return track;
+  }
+  function eligible(song){return !!trackFor(song);}
+  function advice(song){const track=trackFor(song);return track?.verified?'':track?.userCalibrated?'開頭已校準，後段可能有誤差。':track?.sampled?'時間已抽樣調整，可能有誤差。':track?.largeMismatch?'影片版本不同，歌詞時間可能不準。':'歌詞時間尚未校準，可能有誤差。';}
+  function cleanup(){if(watchdog)clearTimeout(watchdog);watchdog=null;ready=false;playing=false;frame=null;nonce='';byId('ytPlayer').replaceChildren();byId('ytLoad').hidden=false;lastSeconds=0;byId('ytSeekBack').disabled=true;byId('ytSeekForward').disabled=true;}
+  function songChanged(song){
+    if(!song)return;const key=String(song.id||'')+'|'+String(song.name||'');if(key===identity)return;
+    ++loadGeneration;cleanup();identity=key;selected=song;const track=trackFor(song),ok=!!track;byId('ytSection').hidden=!ok;
+    manualOffset=ok&&!track.noTiming?(readOffset(track)??0):0;updateCalibrationLabel(track);byId('lyricCalibration').hidden=!ok||!!track.noTiming;byId('lyricSyncNow').disabled=true;calibrationDisplay();
+    if(ok){byId('ytMessage').textContent=advice(song);void load();}
+  }
+  function post(type,data={}){if(!frame||!ready)return false;frame.contentWindow.postMessage({kind:'lyric-youtube-v1',nonce,type,...data},remoteOrigin);return true;}
+  let loadGeneration=0;
+  async function load(){
+    if(!selected||!eligible(selected))return;
+    const expectedSong=selected, generation=++loadGeneration;
+    cleanup();byId('ytMessage').textContent='正在尋找播放器…';
+    root.VoiceSync?.stop?.('等待播放器，歌詞已暫停。');root.VoiceSync?.enable?.();
+    remoteOrigin=root.location.origin;
+    if(generation!==loadGeneration||expectedSong!==selected||!eligible(selected))return;
+
+    const values=new Uint8Array(16);root.crypto.getRandomValues(values);nonce=Array.from(values,x=>x.toString(16).padStart(2,'0')).join('');
+    frame=document.createElement('iframe');frame.title='YouTube 播放器：'+String(selected.name||'');frame.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';frame.allowFullscreen=true;
+    frame.referrerPolicy='strict-origin-when-cross-origin';
+    const u=new URL('player.html?sync=desktop-2',root.location.href);u.hash=encodeURIComponent(JSON.stringify({parent:location.origin,video:trackFor(selected).video,nonce}));frame.src=u.href;
+    byId('ytPlayer').replaceChildren(frame);byId('ytLoad').hidden=true;byId('ytMessage').textContent='正在載入 YouTube 播放器…';
+    const expected=frame;watchdog=setTimeout(()=>{if(frame!==expected||ready)return;cleanup();root.VoiceSync?.stop?.('播放器未載入，請點歌詞手動跟隨。');byId('ytMessage').textContent='播放器載入逾時，請檢查網路或改用 YouTube Music。';},25000);
+  }
+  root.addEventListener('message',event=>{
+    if(!frame||event.origin!==remoteOrigin||event.source!==frame.contentWindow)return;
+    const msg=event.data;if(!msg||msg.kind!=='lyric-youtube-v1'||msg.nonce!==nonce)return;
+    if(msg.type==='ready'){ready=true;byId('ytSeekBack').disabled=false;byId('ytSeekForward').disabled=false;if(watchdog)clearTimeout(watchdog);watchdog=null;byId('ytMessage').textContent=advice(selected);}
+    else if(msg.type==='progress'&&ready&&eligible(selected)&&Number.isFinite(msg.seconds)&&msg.seconds>=0&&Number.isInteger(msg.state)){
+      lastSeconds=msg.seconds;playing=msg.state===1;byId('lyricSyncNow').disabled=!playing;if(!trackFor(selected).noTiming)root.VoiceSync?.followPlayer?.(selected,msg.seconds-(trackFor(selected).videoOffset||0)-manualOffset,playing);
+    }else if(msg.type==='error'){
+      const code=Number.isInteger(msg.code)?msg.code:0;cleanup();root.VoiceSync?.stop?.('播放器無法使用，請點歌詞手動跟隨。');byId('ytMessage').textContent=`無法內嵌播放（錯誤 ${code}），可改用 YouTube Music。`;
+    }
+  });
+  function seekToLyric(song,index){if(!ready||!eligible(selected)||song?.id!==selected?.id)return false;const row=selected.timedLyrics?.[index];return !!row&&Number.isFinite(row.time)&&post('seek',{seconds:Math.max(0,row.time+(trackFor(selected).videoOffset||0)+manualOffset)});}
+  function togglePlayback(){return post(playing?'pause':'play');}
+  function pausePlayback(){return post('pause');}
+  function seekRelative(delta){if(!ready||!Number.isFinite(delta))return false;return post('seek',{seconds:Math.max(0,lastSeconds+delta)});}
+  byId('lyricSyncNow').addEventListener('click',()=>{
+    const track=trackFor(selected),first=selected?.timedLyrics?.[0]?.time;
+    if(!playing||!track||!Number.isFinite(first))return;
+    const target=lastSeconds-first-(track.videoOffset||0);
+    if(Math.abs(target)>30){calibrationDisplay('請先回到歌曲第一句附近。');return;}
+    changeCalibration(target);
+  });
+  byId('lyricCalEarlier').addEventListener('click',()=>changeCalibration(manualOffset-.5));
+  byId('lyricCalLater').addEventListener('click',()=>changeCalibration(manualOffset+.5));
+  byId('lyricCalReset').addEventListener('click',()=>changeCalibration(0));
+  byId('lyricCalSave').addEventListener('click',()=>{
+    const track=trackFor(selected);if(!track||track.noTiming)return;
+    try{localStorage.setItem(absolutePrefix+track.video,String(Number(((track.videoOffset||0)+manualOffset).toFixed(4))));calibrationDisplay('已儲存在這個瀏覽器');updateCalibrationLabel(track);}
+    catch{calibrationDisplay('儲存失敗，請檢查瀏覽器的儲存空間。');}
+  });
+  byId('lyricCalShare').addEventListener('click',async()=>{
+    const button=byId('lyricCalShare');let entries=[];
+    try {
+      for(const track of Object.values(tracks)){
+        if(track.noTiming||entries.some(row=>row.video===track.video))continue;
+        const adjustment=readOffset(track);if(adjustment===null||Math.abs(adjustment)>60)continue;
+        entries.push({video:track.video,adjustment,baseOffset:Number(track.videoOffset)||0,sourceId:track.sourceId,first:track.first,last:track.last,length:track.length});
+      }
+    } catch {calibrationDisplay('無法讀取這個瀏覽器的校準資料。');return;}
+    if(!entries.length){calibrationDisplay('還沒有已儲存的校準；請先按「儲存」。');return;}
+    button.disabled=true;calibrationDisplay('正在分享已儲存的校準…');
+    try{
+      const response=await fetch('api/calibrations',{method:'POST',credentials:'omit',headers:{'Content-Type':'application/json'},body:JSON.stringify({version:1,entries})});
+      if(!response.ok)throw new Error('share_failed');
+      const result=await response.json();if(!/^[A-F0-9]{12}$/.test(result.code))throw new Error('bad_response');
+      calibrationDisplay(`已分享 ${entries.length} 首；請把代碼 ${result.code} 傳給我。`);
+    }catch{calibrationDisplay('分享失敗，請檢查網路後重試；手機上的資料仍在。');}
+    finally{button.disabled=false;}
+  });
+  byId('ytLoad').addEventListener('click',load);
+  document.addEventListener('visibilitychange',()=>{if(document.hidden&&playing)pausePlayback();});
+  root.YTIntegration={songChanged,seekToLyric,togglePlayback,pausePlayback,seekRelative,supportsSong:eligible};
+})(window);
+</script><script>(function(){const button=document.getElementById('mobileSettingsToggle');if(!button)return;function setOpen(open){if(open){const player=document.querySelector('#ytPlayer iframe'),bottom=player?.getBoundingClientRect().bottom||0;const available=Math.max(60,Math.floor(window.innerHeight-94-bottom));document.documentElement.style.setProperty('--settings-available-height',available+'px');}document.body.classList.toggle('mobile-settings-open',open);button.setAttribute('aria-expanded',String(open));}button.addEventListener('click',()=>setOpen(button.getAttribute('aria-expanded')!=='true'));document.getElementById('ytSeekBack').addEventListener('click',()=>window.YTIntegration?.seekRelative?.(-10));document.getElementById('ytSeekForward').addEventListener('click',()=>window.YTIntegration?.seekRelative?.(10));document.addEventListener('keydown',event=>{if(event.key==='Escape'&&button.getAttribute('aria-expanded')==='true'){setOpen(false);button.focus();}});const query=window.matchMedia('(max-width: 760px)');query.addEventListener?.('change',()=>setOpen(false));})();</script></body></html>
