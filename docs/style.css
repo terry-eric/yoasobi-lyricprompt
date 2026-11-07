@@ -400,3 +400,32 @@ body.music-home-open .player #ytSection[open]:has(iframe) #ytPlayer iframe { dis
   .cassette-row:has(.cassette-track:only-child) .cassette-rail{background:linear-gradient(90deg,#181820dc,#181820ed),var(--single-cover) center / cover}
   body.music-home-open .player .voice-follow-controls{display:none!important}
 }
+
+/* A record turns only while the linked player is playing. */
+@keyframes vinyl-spin{to{transform:rotate(360deg)}}
+.player .mobile-disc{
+  background:repeating-radial-gradient(circle,#09090d 0 2px,#27272d 3px 4px,#101015 5px 7px);
+  border:1px solid #585861;
+  box-shadow:0 18px 44px #0009,0 0 0 1px #000;
+  animation:vinyl-spin 14s linear infinite;
+  animation-play-state:paused;
+}
+body.record-playing .player .mobile-disc{animation-play-state:running}
+.player .mobile-disc::before{
+  content:'';position:absolute;inset:0;z-index:2;border:0;border-radius:50%;box-shadow:none;
+  background:conic-gradient(from 20deg,transparent 0deg,#ffffff16 38deg,transparent 76deg,transparent 180deg,#ffffff10 218deg,transparent 256deg);
+  pointer-events:none;
+}
+.player .mobile-disc .album-disc-image{
+  position:absolute;inset:29%;width:42%;height:42%;border-radius:50%;object-fit:cover;z-index:3;
+  border:2px solid #1b1a20;
+}
+.player .mobile-disc::after{z-index:4;pointer-events:none}
+.player .mobile-disc-label{z-index:3}
+@media (min-width:761px){
+  body:not(.music-home-open) .player{grid-template-columns:minmax(0,min(44%,600px)) minmax(0,780px);justify-content:center;column-gap:clamp(28px,3vw,54px)}
+  .player .mobile-disc{align-self:start;margin:clamp(24px,4vh,44px) auto 0;width:min(240px,24vh);height:min(240px,24vh)}
+  .player .lyric-line{margin-bottom:4px;padding:13px 20px;font-size:clamp(16px,1.1vw,18px);color:#c4becb}
+  .player .lyric-line.active{font-size:clamp(19px,1.35vw,21px)}
+}
+@media (prefers-reduced-motion:reduce){.player .mobile-disc{animation:none}}
